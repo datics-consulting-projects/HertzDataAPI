@@ -1,0 +1,48 @@
+name: Build and Push to ACR
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Application
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        run: dotnet test --configuration Release --no-restore --verbosity normal
+
+      - name: Log in to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/hertzdataapi:${{ github.sha }} .
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/hertzdataapi:${{ github.sha }}
+
+      - name: Save Docker Image Tag
+        run: echo "IMAGE_TAG=${{ secrets.ACR_LOGIN_SERVER }}/hertzdataapi:${{ github.sha }}" >> $GITHUB_ENV

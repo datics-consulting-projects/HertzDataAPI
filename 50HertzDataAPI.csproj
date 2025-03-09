@@ -14,5 +14,9 @@
         <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include=".github\workflows\pipeline.yml" />
+    </ItemGroup>
+
 </Project>
 
