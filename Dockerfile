@@ -1,48 +1,21 @@
-name: Build and Push to ACR
+# Use the official .NET SDK as a build image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-      - develop
+WORKDIR /app
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# Copy the project files and restore dependencies
+COPY *.csproj ./
+RUN dotnet restore
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+# Copy the remaining files and build the app
+COPY . ./
+RUN dotnet publish -c Release -o out
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '7.0.x'
+# Use ASP.NET runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
-      - name: Restore Dependencies
-        run: dotnet restore
+WORKDIR /app
+COPY --from=build /app/out ./
 
-      - name: Build Application
-        run: dotnet build --configuration Release --no-restore
-
-      - name: Run Tests
-        run: dotnet test --configuration Release --no-restore --verbosity normal
-
-      - name: Log in to Azure Container Registry
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-
-      - name: Build and Push Docker Image
-        run: |
-          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/hertzdataapi:${{ github.sha }} .
-          docker push ${{ secrets.ACR_LOGIN_SERVER }}/hertzdataapi:${{ github.sha }}
-
-      - name: Save Docker Image Tag
-        run: echo "IMAGE_TAG=${{ secrets.ACR_LOGIN_SERVER }}/hertzdataapi:${{ github.sha }}" >> $GITHUB_ENV
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "50HertzDataAPI.dll"]
