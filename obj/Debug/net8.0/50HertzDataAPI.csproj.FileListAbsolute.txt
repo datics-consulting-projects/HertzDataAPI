@@ -1,0 +1,14 @@
+/Users/tuan/RiderProjects/50HertzDataAPI/bin/Debug/net8.0/50HertzDataAPI
+/Users/tuan/RiderProjects/50HertzDataAPI/bin/Debug/net8.0/50HertzDataAPI.deps.json
+/Users/tuan/RiderProjects/50HertzDataAPI/bin/Debug/net8.0/50HertzDataAPI.runtimeconfig.json
+/Users/tuan/RiderProjects/50HertzDataAPI/bin/Debug/net8.0/50HertzDataAPI.dll
+/Users/tuan/RiderProjects/50HertzDataAPI/bin/Debug/net8.0/50HertzDataAPI.pdb
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.AssemblyInfoInputs.cache
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.AssemblyInfo.cs
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.csproj.CoreCompileInputs.cache
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.dll
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/refint/50HertzDataAPI.dll
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.pdb
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/50HertzDataAPI.genruntimeconfig.cache
+/Users/tuan/RiderProjects/50HertzDataAPI/obj/Debug/net8.0/ref/50HertzDataAPI.dll
