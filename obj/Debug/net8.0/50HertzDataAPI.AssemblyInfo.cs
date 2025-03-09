@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("50HertzDataAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ce4c98e5a240abf42548ea252b155b2eccb1442")]
 [assembly: System.Reflection.AssemblyProductAttribute("50HertzDataAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("50HertzDataAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

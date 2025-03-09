@@ -1,0 +1,30 @@
+replicaCount: 4
+
+image:
+  repository: hertzdataacr.azurecr.io/hertzdataapi
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: prod.hertzdataapi.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+env:
+  NAME: "prod"
